@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers;
  * Created by master_c on 2017/5/22.
  */
 
-public class HttpHelper {
+public class RxSchedulers {
 
     public static <T> ObservableTransformer<T, T> scheduler() {
         return upstream ->

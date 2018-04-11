@@ -46,6 +46,9 @@ public class UserActivity extends AppCompatActivity {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         userViewModel.liveData().observe(this, this::handleResult);
         userViewModel.nextPageLiveData().observe(this, this::nextPageResult);
+
+        mRefreshLayout.setRefreshing(true);
+        updateData();
     }
 
     private void updateData() {

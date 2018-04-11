@@ -3,7 +3,7 @@ package com.master.android.datasource;
 import android.annotation.SuppressLint;
 import android.arch.lifecycle.MutableLiveData;
 
-import com.master.android.http.HttpHelper;
+import com.master.android.http.RxSchedulers;
 import com.master.android.http.HttpRetrofit;
 import com.master.android.meitu.ImageResponse;
 import com.master.android.meitu.UserResponse;
@@ -22,7 +22,7 @@ public final class MeituRepository {
         MutableLiveData<UserResponse> liveData = new MutableLiveData<>();
         HttpRetrofit.instance().getUserService()
                 .getUserResponse(id)
-                .compose(HttpHelper.scheduler())
+                .compose(RxSchedulers.scheduler())
                 .onErrorReturn(UserResponse::error)
                 .subscribe(liveData::setValue);
         return liveData;
@@ -34,7 +34,7 @@ public final class MeituRepository {
         HttpRetrofit.instance()
                 .getUserService()
                 .getUserResponse(id)
-                .compose(HttpHelper.scheduler())
+                .compose(RxSchedulers.scheduler())
                 .onErrorReturn(UserResponse::error)
                 .subscribe(liveData::setValue);
     }
@@ -45,7 +45,7 @@ public final class MeituRepository {
         HttpRetrofit.instance()
                 .getUserService()
                 .getImageResponse(10, id, maxTime)
-                .compose(HttpHelper.scheduler())
+                .compose(RxSchedulers.scheduler())
                 .onErrorReturn(ImageResponse::error)
                 .subscribe(liveData::setValue);
     }

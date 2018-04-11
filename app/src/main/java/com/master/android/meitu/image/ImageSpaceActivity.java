@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.master.android.R;
+import com.master.android.meitu.ImageModel;
 import com.master.android.meitu.ImageResponse;
 
 public class ImageSpaceActivity extends AppCompatActivity {
@@ -46,8 +47,8 @@ public class ImageSpaceActivity extends AppCompatActivity {
         adapter.setEnableLoadMore(true);
         adapter.setOnLoadMoreListener(this::addData, mRecyclerView);
         adapter.setOnItemClickListener((adapter, view, position) -> {
-//            H5Object object = (H5Object) adapter.getData().get(position);
-//            H5DetailActivity.start(this, mIndex, object.id, object.tit);
+            ImageModel model = (ImageModel) adapter.getData().get(position);
+            ImageDetailActivity.start(this, model.browseUrl);
         });
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -57,6 +58,9 @@ public class ImageSpaceActivity extends AppCompatActivity {
         userViewModel = ViewModelProviders.of(this).get(ImageViewModel.class);
         userViewModel.liveData().observe(this, this::handleResult);
         userViewModel.nextPageLiveData().observe(this, this::nextPageResult);
+
+        mRefreshLayout.setRefreshing(true);
+        updateData();
     }
 
     private void updateData() {
