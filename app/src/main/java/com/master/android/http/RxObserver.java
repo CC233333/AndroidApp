@@ -20,13 +20,12 @@ import retrofit2.HttpException;
 /**
  * Created by cenzen on 2018/1/19.
  */
-
-public abstract class HttpObserver<T> implements Observer<T> {
+public abstract class RxObserver<T> implements Observer<T> {
 
     private Disposable mDisposable;
     private Context mContext;
 
-    public HttpObserver(Context context) {
+    public RxObserver(Context context) {
         mContext = context;
     }
 

@@ -49,6 +49,12 @@ dependencies {
     implementation "com.google.code.gson:gson:${GSON_VERSION}"
     implementation "io.reactivex.rxjava2:rxjava:${RX_JAVA_VERSION}"
     implementation "io.reactivex.rxjava2:rxandroid:${RX_ANDROID_VERSION}"
+
+    implementation "com.trello.rxlifecycle2:rxlifecycle:${rxlifecycleVersion}"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-android:${rxlifecycleVersion}"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-components:${rxlifecycleVersion}"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:${rxlifecycleVersion}"
+
     implementation "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
     implementation "com.squareup.retrofit2:converter-gson:${RETROFIT_VERSION}"
     implementation "com.squareup.retrofit2:adapter-rxjava2:${RETROFIT_VERSION}"

@@ -14,16 +14,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by cenzen on 2018/3/6.
  */
 
-public final class HttpRetrofit {
-
-    private static final String BASE_URL = "http://192.168.199.199:8080/";
-//    private static final String BASE_URL = "https://api.youguoquan.com/";
+public final class RxRetrofit {
+//    private static final String BASE_URL = "http://192.168.31.104:8080/";
+    private static final String BASE_URL = "http://192.168.199.201:8080/";
+//    private static final String BASE_URL = "http://47.75.87.7:8080/";
 
     private static class Instance {
-        private static final HttpRetrofit sInstance = new HttpRetrofit();
+        private static final RxRetrofit sInstance = new RxRetrofit();
     }
 
-    public static HttpRetrofit instance() {
+    public static RxRetrofit instance() {
         return Instance.sInstance;
     }
 
@@ -32,7 +32,7 @@ public final class HttpRetrofit {
     private HttpApi mHttpApi;
     private MeituService userService;
 
-    public HttpRetrofit() {
+    public RxRetrofit() {
         mOkHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
@@ -55,7 +55,6 @@ public final class HttpRetrofit {
     public HttpApi createHttpApi() {
         return mRetrofit.create(HttpApi.class);
     }
-
 
     public MeituService getUserService() {
         return userService;

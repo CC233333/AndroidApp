@@ -12,7 +12,6 @@ public class ImageDetailAdapter extends FragmentStatePagerAdapter {
 
     private List<ImageUrl> urls;
 
-
     public ImageDetailAdapter(FragmentManager fm, List<ImageUrl> urls) {
         super(fm);
         this.urls = urls;
@@ -20,7 +19,7 @@ public class ImageDetailAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-            return ImageDetailFragment.newInstance((position + 1), getCount(), urls.get(position).url);
+        return ImageDetailFragment.newInstance((position + 1), getCount(), urls.get(position).url);
     }
 
     @Override

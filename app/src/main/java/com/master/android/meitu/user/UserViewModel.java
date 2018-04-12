@@ -3,7 +3,7 @@ package com.master.android.meitu.user;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
-import com.master.android.datasource.MeituRepository;
+import com.master.android.datasource.MeituSource;
 import com.master.android.meitu.UserResponse;
 
 public class UserViewModel extends ViewModel {
@@ -21,11 +21,11 @@ public class UserViewModel extends ViewModel {
     }
 
     public void refresh(String id) {
-        MeituRepository.requestUserResponse(id, liveData);
+        MeituSource.requestUserResponse(id, liveData);
     }
 
     public void nextPage(String id) {
-        MeituRepository.requestUserResponse(id, nextPageLiveData);
+        MeituSource.requestUserResponse(id, nextPageLiveData);
     }
 
 }

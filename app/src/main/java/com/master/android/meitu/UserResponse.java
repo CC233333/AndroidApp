@@ -16,4 +16,18 @@ public class UserResponse {
         return new UserResponse(false);
     }
 
+
+    /**
+     * -1 网络错误
+     */
+    public int code;
+
+    public int code() {
+        return code;
+    }
+
+    public boolean isSuccessful() {
+        return code == 0;
+    }
+
 }

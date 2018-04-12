@@ -21,7 +21,7 @@ public interface MeituService {
                      @Query("maxTime") Long maxTime);
 
 
-    @GET("meitu/html")
+    @GET("meitu/image/html")
     Observable<ImageUrlResponse>
     getImageUrlResponse(@Query("url") String url);
 

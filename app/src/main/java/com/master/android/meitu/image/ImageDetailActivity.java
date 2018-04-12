@@ -6,14 +6,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 
 import com.master.android.R;
-import com.master.android.http.HttpRetrofit;
+import com.master.android.base.BaseActivity;
+import com.master.android.http.RxRetrofit;
 import com.master.android.http.RxSchedulers;
 import com.master.android.meitu.ImageUrlResponse;
 
-public class ImageDetailActivity extends AppCompatActivity {
+import io.reactivex.functions.Consumer;
+
+public class ImageDetailActivity extends BaseActivity {
     
     public static void start(Context context, String browserUrl) {
         Intent starter = new Intent(context, ImageDetailActivity.class);
@@ -23,8 +25,6 @@ public class ImageDetailActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
     private String browserUrl;
-
-    private ImageDetailAdapter imageDetailAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,17 +37,7 @@ public class ImageDetailActivity extends AppCompatActivity {
 
         viewPager = findViewById(R.id.view_pager);
         viewPager.setOffscreenPageLimit(5);
-        request(browserUrl);
-    }
-
-    @SuppressLint("CheckResult")
-    private void request(String url) {
-        HttpRetrofit.instance()
-                .getUserService()
-                .getImageUrlResponse(url)
-                .compose(RxSchedulers.scheduler())
-                .onErrorReturn(ImageUrlResponse::error)
-                .subscribe(this::handleResult);
+        request(browserUrl, this::handleResult);
     }
 
     private void handleResult(ImageUrlResponse response) {
@@ -56,6 +46,17 @@ public class ImageDetailActivity extends AppCompatActivity {
                 viewPager.setAdapter(new ImageDetailAdapter(getSupportFragmentManager(), response.i));
             }
         }
+    }
+
+    @SuppressLint("CheckResult")
+    private void request(String url, Consumer<ImageUrlResponse> onNext) {
+        RxRetrofit.instance()
+                .getUserService()
+                .getImageUrlResponse(url)
+                .compose(RxSchedulers.scheduler())
+                .compose(bindToLifecycle())
+                .onErrorReturn(ImageUrlResponse::error)
+                .subscribe(onNext);
     }
 
 }
