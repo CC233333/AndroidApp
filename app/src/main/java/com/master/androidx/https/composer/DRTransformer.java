@@ -1,6 +1,7 @@
-package com.master.androidx.https;
+package com.master.androidx.https.composer;
 
 import com.master.androidx.data.DR;
+import com.master.androidx.https.mapper.DRMapper;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;

@@ -10,7 +10,7 @@ import android.support.v4.view.ViewPager;
 import com.master.androidx.R;
 import com.master.androidx.base.BaseActivity;
 import com.master.androidx.http.RxRetrofit;
-import com.master.androidx.http.RxSchedulers;
+import com.master.androidx.http.Helpers;
 import com.master.androidx.meitu.entity.ImageUrlResponse;
 
 import io.reactivex.functions.Consumer;
@@ -53,7 +53,7 @@ public class ImageDetailActivity extends BaseActivity {
         RxRetrofit.instance()
                 .getUserService()
                 .getImageUrlResponse(url)
-                .compose(RxSchedulers.scheduler())
+                .compose(Helpers.scheduler())
                 .compose(bindToLifecycle())
                 .onErrorReturn(ImageUrlResponse::error)
                 .subscribe(onNext);

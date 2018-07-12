@@ -8,7 +8,8 @@ import io.reactivex.schedulers.Schedulers;
  * Created by master_c on 2017/5/22.
  */
 
-public class RxSchedulers {
+@Deprecated
+public class Helpers {
 
     @Deprecated
     public static <T> ObservableTransformer<T, T> scheduler() {

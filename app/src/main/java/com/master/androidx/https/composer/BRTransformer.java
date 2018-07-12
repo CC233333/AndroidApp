@@ -1,6 +1,7 @@
-package com.master.androidx.https;
+package com.master.androidx.https.composer;
 
 import com.master.androidx.data.BR;
+import com.master.androidx.https.mapper.BRMapper;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;

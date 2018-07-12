@@ -4,15 +4,15 @@ import android.annotation.SuppressLint;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.master.androidx.http.RxRetrofit;
-import com.master.androidx.http.RxSchedulers;
+import com.master.androidx.http.Helpers;
 import com.master.androidx.meitu.entity.ImageResponse;
 import com.master.androidx.meitu.entity.UserResponse;
 
-public final class MeituSource {
+public final class MeituRepository {
 
     private static UserResponse userResponse;
 
-    private MeituSource() {
+    private MeituRepository() {
     }
 
     /**
@@ -24,7 +24,7 @@ public final class MeituSource {
         MutableLiveData<UserResponse> liveData = new MutableLiveData<>();
         RxRetrofit.instance().getUserService()
                 .getUserResponse(id)
-                .compose(RxSchedulers.scheduler())
+                .compose(Helpers.scheduler())
                 .onErrorReturn(UserResponse::error)
                 .subscribe(liveData::setValue);
         return liveData;
@@ -36,7 +36,7 @@ public final class MeituSource {
         RxRetrofit.instance()
                 .getUserService()
                 .getUserResponse(id)
-                .compose(RxSchedulers.scheduler())
+                .compose(Helpers.scheduler())
                 .onErrorReturn(UserResponse::error)
                 .subscribe(liveData::setValue);
     }
@@ -47,7 +47,7 @@ public final class MeituSource {
         RxRetrofit.instance()
                 .getUserService()
                 .getImageResponse(10, id, maxTime)
-                .compose(RxSchedulers.scheduler())
+                .compose(Helpers.scheduler())
                 .onErrorReturn(ImageResponse::error)
                 .subscribe(liveData::setValue);
     }
