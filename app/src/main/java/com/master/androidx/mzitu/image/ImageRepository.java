@@ -6,8 +6,8 @@ import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
 
 import com.master.androidx.app.PagedListConfigs;
-import com.master.androidx.data.AppState;
-import com.master.androidx.data.PagedData;
+import com.master.androidx.vm.ResultState;
+import com.master.androidx.vm.PagedData;
 
 public class ImageRepository {
 
@@ -17,11 +17,11 @@ public class ImageRepository {
         LiveData<PagedList<ImageObject>> data =
                 new LivePagedListBuilder<>(factory, PagedListConfigs.config()).build();
 
-        LiveData<AppState> refreshData =
+        LiveData<ResultState> refreshData =
                 Transformations.switchMap(
                         factory.mDataSourceLiveData, input -> input.mLiveDataRefresh);
 
-        LiveData<AppState> moreData =
+        LiveData<ResultState> moreData =
                 Transformations.switchMap(
                         factory.mDataSourceLiveData, input -> input.mLiveDataMore);
 
@@ -33,11 +33,11 @@ public class ImageRepository {
         LiveData<PagedList<ImageObject>> data =
                 new LivePagedListBuilder<>(factory, PagedListConfigs.config()).build();
 
-        LiveData<AppState> refreshData =
+        LiveData<ResultState> refreshData =
                 Transformations.switchMap(
                         factory.mDataSourceLiveData, input -> input.mLiveDataRefresh);
 
-        LiveData<AppState> moreData =
+        LiveData<ResultState> moreData =
                 Transformations.switchMap(
                         factory.mDataSourceLiveData, input -> input.mLiveDataMore);
 

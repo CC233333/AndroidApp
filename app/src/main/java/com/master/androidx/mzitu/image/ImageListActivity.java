@@ -13,7 +13,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.master.androidx.R;
 import com.master.androidx.app.PagedListConfigs;
-import com.master.androidx.data.AppState;
+import com.master.androidx.vm.ResultState;
 import com.master.androidx.https.PagedListObserver;
 import com.master.androidx.util.Toasts;
 
@@ -85,17 +85,17 @@ public class ImageListActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable ImageDataSource mzituDataSource) {
                 if (mzituDataSource != null) {
-                    mzituDataSource.mLiveDataRefresh.observe(ImageListActivity.this, new Observer<AppState>() {
+                    mzituDataSource.mLiveDataRefresh.observe(ImageListActivity.this, new Observer<ResultState>() {
                         @Override
-                        public void onChanged(@Nullable AppState networkState) {
+                        public void onChanged(@Nullable ResultState networkState) {
                             if (networkState != null) {
                                 mRefreshLayout.setRefreshing(networkState.isRunning());
                             }
                         }
                     });
-                    mzituDataSource.mLiveDataMore.observe(ImageListActivity.this, new Observer<AppState>() {
+                    mzituDataSource.mLiveDataMore.observe(ImageListActivity.this, new Observer<ResultState>() {
                         @Override
-                        public void onChanged(@Nullable AppState networkState) {
+                        public void onChanged(@Nullable ResultState networkState) {
                             if (networkState != null) {
                                 if (networkState.isFailed()) {
                                     Toasts.shortToast("已经到底了");
@@ -120,18 +120,18 @@ public class ImageListActivity extends AppCompatActivity {
             }
         });
 
-        mImageViewModel.getRefreshData().observe(this, new Observer<AppState>() {
+        mImageViewModel.getRefreshData().observe(this, new Observer<ResultState>() {
             @Override
-            public void onChanged(@Nullable AppState appState) {
+            public void onChanged(@Nullable ResultState appState) {
                 if (appState != null) {
                     mRefreshLayout.setRefreshing(appState.isRunning());
                 }
             }
         });
 
-        mImageViewModel.getMoreData().observe(this, new Observer<AppState>() {
+        mImageViewModel.getMoreData().observe(this, new Observer<ResultState>() {
             @Override
-            public void onChanged(@Nullable AppState appState) {
+            public void onChanged(@Nullable ResultState appState) {
                 if (appState != null && appState.isFailed()) {
                     Toasts.shortToast("已经到底了");
                 }

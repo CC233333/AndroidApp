@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.master.androidx.R;
-import com.master.androidx.data.AppStateObserver;
-import com.master.androidx.https.AppObserver;
+import com.master.androidx.vm.ResultState;
+import com.master.androidx.util.Toasts;
 
 public class ImageDetailActivity extends AppCompatActivity {
 
@@ -65,35 +65,25 @@ public class ImageDetailActivity extends AppCompatActivity {
                 }
             }
         });
-        mDetailViewModel.mAppData.observe(this, new AppStateObserver());
-        mDetailViewModel.mRefreshData.observe(this, new Observer<Boolean>() {
+        mDetailViewModel.xData.observe(this, new Observer<ResultState>() {
             @Override
-            public void onChanged(@Nullable Boolean aBoolean) {
-                if (aBoolean != null) {
-                    mRefreshView.setVisibility(aBoolean ? View.VISIBLE : View.GONE);
+            public void onChanged(@Nullable ResultState appState) {
+                if (appState != null) {
+                    if (appState.isRunning()) {
+                        mRefreshView.setVisibility(View.VISIBLE);
+                    } else if (appState.isSuccess()) {
+                        mRefreshView.setVisibility(View.GONE);
+                    } else if (appState.isSuccess()) {
+                        mRefreshView.setVisibility(View.GONE);
+                        Toasts.shortToast(appState.getMessage());
+                    }
                 }
             }
         });
     }
 
     private void getImageDetail() {
-        mDetailViewModel.detail(mImageId);
+        mDetailViewModel.detailCopy(mImageId);
     }
-
-
-    private void rxViewModel() {
-        mViewModel = ViewModelProviders.of(this).get(RxDetailViewModel.class);
-    }
-
-    private void getDetail() {
-        mViewModel.detail(137510)
-                .subscribe(new AppObserver<DetailObject>() {
-                    @Override
-                    public void onNext(DetailObject detailObject) {
-
-                    }
-                });
-    }
-
 
 }

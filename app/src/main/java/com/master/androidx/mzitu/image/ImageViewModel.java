@@ -6,7 +6,7 @@ import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
 
 import com.master.androidx.app.PagedListConfigs;
-import com.master.androidx.data.AppState;
+import com.master.androidx.vm.ResultState;
 
 import static android.arch.lifecycle.Transformations.switchMap;
 
@@ -14,18 +14,18 @@ public class ImageViewModel extends ViewModel {
 
     private ImageDataSourceFactory mFactory;
     private LiveData<PagedList<ImageObject>> mData;
-    private LiveData<AppState> mRefreshData;
-    private LiveData<AppState> mMoreData;
+    private LiveData<ResultState> mRefreshData;
+    private LiveData<ResultState> mMoreData;
 
     public LiveData<PagedList<ImageObject>> getData() {
         return mData;
     }
 
-    public LiveData<AppState> getRefreshData() {
+    public LiveData<ResultState> getRefreshData() {
         return mRefreshData;
     }
 
-    public LiveData<AppState> getMoreData() {
+    public LiveData<ResultState> getMoreData() {
         return mMoreData;
     }
 

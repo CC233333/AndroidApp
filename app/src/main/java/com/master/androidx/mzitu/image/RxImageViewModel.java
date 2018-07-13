@@ -6,8 +6,8 @@ import android.arch.paging.PagedList;
 import android.arch.paging.RxPagedListBuilder;
 
 import com.master.androidx.app.PagedListConfigs;
-import com.master.androidx.data.AppState;
-import com.master.androidx.data.PagedData;
+import com.master.androidx.vm.ResultState;
+import com.master.androidx.vm.PagedData;
 
 import io.reactivex.Observable;
 
@@ -17,19 +17,19 @@ public class RxImageViewModel extends ViewModel {
 
     private LiveData<PagedData<ImageObject>> mPagedData;
     private LiveData<PagedList<ImageObject>> mData;
-    private LiveData<AppState> mRefreshData;
-    private LiveData<AppState> mMoreData;
+    private LiveData<ResultState> mRefreshData;
+    private LiveData<ResultState> mMoreData;
 
 
     public LiveData<PagedList<ImageObject>> getData() {
         return mData;
     }
 
-    public LiveData<AppState> getRefreshData() {
+    public LiveData<ResultState> getRefreshData() {
         return mRefreshData;
     }
 
-    public LiveData<AppState> getMoreData() {
+    public LiveData<ResultState> getMoreData() {
         return mMoreData;
     }
 
