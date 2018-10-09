@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.master.androidx.R;
 import com.master.androidx.mzitu.detail.ImageDetailActivity;
 
@@ -83,8 +84,6 @@ public class ImageAdapter extends PagedListAdapter<ImageObject, ImageAdapter.Ima
             mImageObject = object;
             Glide.with(mContext)
                     .load(object.thumb_src_min)
-                    .dontAnimate()
-                    .dontTransform()
                     .into(mImageView);
             mIdView.setText(object.title);
             mNameView.setText(object.title);

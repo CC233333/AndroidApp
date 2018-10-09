@@ -21,8 +21,6 @@ public class ImageSpaceAdapter extends BaseQuickAdapter<ImageModel, BaseViewHold
     protected void convert(BaseViewHolder helper, ImageModel item) {
         Glide.with(mContext)
                 .load(item.avatar)
-                .dontAnimate()
-                .dontTransform()
                 .into((ImageView) helper.getView(R.id.image_view));
         helper.setText(R.id.id_view, item.ID);
         helper.setText(R.id.name_view, item.title);

@@ -2,7 +2,6 @@ package com.master.androidx.ui;
 
 import android.Manifest;
 import android.app.DownloadManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,11 +13,9 @@ import android.view.View;
 
 import com.master.androidx.R;
 import com.master.androidx.base.BaseActivity;
+import com.master.androidx.rx.NextObserver;
 import com.master.androidx.util.Prefs;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 public class DownloadActivity extends BaseActivity {
 
@@ -48,33 +45,19 @@ public class DownloadActivity extends BaseActivity {
         sendBroadcast(intent);
     }
 
-
     private void checkPermission() {
         RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                .subscribe(new Observer<Boolean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
+        rxPermissions.request(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                .subscribe(new NextObserver<Boolean>() {
                     @Override
                     public void onNext(Boolean aBoolean) {
                         downloadApk();
                     }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
                 });
-
     }
+
 
     private void downloadApk() {
         String url = "http://epso.dragra.com/and2/cd.apk";

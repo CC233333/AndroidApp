@@ -48,7 +48,7 @@ public class ImageDetailFragment extends Fragment {
         ImageView imageView = rootView.findViewById(R.id.image_view);
         TextView positionView = rootView.findViewById(R.id.position_view);
         TextView sizeView = rootView.findViewById(R.id.size_view);
-        Glide.with(this).load(url).dontAnimate().into(imageView);
+        Glide.with(this).load(url).into(imageView);
         positionView.setText(String.valueOf(position));
         sizeView.setText(String.valueOf(size));
         return rootView;

@@ -72,9 +72,8 @@ public class ImageListActivity extends AppCompatActivity {
     @Deprecated
     private void refreshData() {
         ImageDataSourceFactory factory = new ImageDataSourceFactory(new ImageBody());
-        mObservable =
-                new RxPagedListBuilder<>(factory, PagedListConfigs.config())
-                        .buildObservable();
+        mObservable = new RxPagedListBuilder<>(factory, PagedListConfigs.config())
+                .buildObservable();
         mObservable.subscribe(new PagedListObserver<PagedList<ImageObject>>() {
             @Override
             public void onNext(PagedList<ImageObject> imageObjects) {

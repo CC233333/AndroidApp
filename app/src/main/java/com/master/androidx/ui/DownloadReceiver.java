@@ -16,7 +16,7 @@ public class DownloadReceiver extends BroadcastReceiver {
         if (intent != null && intent.getAction() != null) {
             if (intent.getAction().equals(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) {
                 long apkId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-                installApk(context, apkId);
+                onInstallAction(context, apkId);
             }
         }
     }
@@ -39,5 +39,28 @@ public class DownloadReceiver extends BroadcastReceiver {
             }
         }
     }
+
+    private void onInstallAction(Context context, long apkId) {
+        long id = Prefs.apkId();
+        if (id == apkId) {
+            DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+            if (dm != null) {
+                Uri uri = dm.getUriForDownloadedFile(apkId);
+                if (uri != null) {
+                    Intent starter = new Intent(Intent.ACTION_VIEW);
+                    starter.addCategory(Intent.CATEGORY_DEFAULT);
+                    starter.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    starter.setDataAndType(uri, "application/vnd.android.package-archive");
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                        starter.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    }
+                    if (context.getPackageManager().queryIntentActivities(starter, 0).size() > 0) {
+                        context.startActivity(starter);
+                    }
+                }
+            }
+        }
+    }
+
 
 }

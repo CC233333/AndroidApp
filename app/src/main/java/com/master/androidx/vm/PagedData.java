@@ -9,7 +9,9 @@ public class PagedData<T> {
     public LiveData<ResultState> mRefreshData;
     public LiveData<ResultState> mMoreData;
 
-    public PagedData(LiveData<PagedList<T>> data, LiveData<ResultState> refreshData, LiveData<ResultState> moreData) {
+    public PagedData(LiveData<PagedList<T>> data,
+                     LiveData<ResultState> refreshData,
+                     LiveData<ResultState> moreData) {
         mData = data;
         mRefreshData = refreshData;
         mMoreData = moreData;
