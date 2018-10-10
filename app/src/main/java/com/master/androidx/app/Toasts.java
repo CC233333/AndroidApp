@@ -8,9 +8,9 @@ import android.widget.Toast;
  * Created by cenzen on 2018/2/9.
  */
 
-public final class ToastApp {
+public final class Toasts {
 
-    private ToastApp() {
+    private Toasts() {
     }
 
     public static void toast(CharSequence aText) {

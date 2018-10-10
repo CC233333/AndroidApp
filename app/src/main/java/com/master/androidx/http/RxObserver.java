@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonParseException;
-import com.master.androidx.app.ToastApp;
+import com.master.androidx.app.Toasts;
 import com.master.androidx.util.NetUtils;
 
 import org.apache.http.conn.ConnectTimeoutException;
@@ -35,7 +35,7 @@ public abstract class RxObserver<T> implements Observer<T> {
         if (!NetUtils.isNetworkAvailable()) {
             if (!disposable.isDisposed())
                 disposable.dispose();
-            ToastApp.toast("请检查网络");
+            Toasts.toast("请检查网络");
             onError();
         }
     }
@@ -48,42 +48,42 @@ public abstract class RxObserver<T> implements Observer<T> {
     public void onError(@NonNull Throwable exception) {
         if (exception instanceof HttpException) {
             HttpException httpException = (HttpException) exception;
-            ToastApp.toast(httpException.getMessage());
+            Toasts.toast(httpException.getMessage());
             onError();
             return;
         }
 
         if (exception instanceof ConnectException) {
-            ToastApp.toast("网络连接异常");
+            Toasts.toast("网络连接异常");
             onError();
             return;
         }
 
         if (exception instanceof SocketTimeoutException) {
-            ToastApp.toast("网络连接超时");
+            Toasts.toast("网络连接超时");
             onError();
             return;
         }
 
         if (exception instanceof ConnectTimeoutException) {
-            ToastApp.toast("网络连接超时");
+            Toasts.toast("网络连接超时");
             onError();
             return;
         }
 
         if (exception instanceof JsonIOException) {
-            ToastApp.toast("数据解析错误");
+            Toasts.toast("数据解析错误");
             onError();
             return;
         }
 
         if (exception instanceof JsonParseException) {
-            ToastApp.toast("数据解析错误");
+            Toasts.toast("数据解析错误");
             onError();
             return;
         }
 
-        ToastApp.toast("Error");
+        Toasts.toast("Error");
 
         onError();
     }
