@@ -12,4 +12,12 @@ public class Versions {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT;
     }
 
+    public static boolean api21() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
+    }
+
+    public static boolean api23() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.M;
+    }
+
 }
