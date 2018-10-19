@@ -33,9 +33,11 @@ public class StatusBars {
     }
 
     public static void setStatusBarColor(Activity activity, int color) {
-        boolean isLightColor = StatusBars.toGrey(color) > 225;
-        StatusBars.setStatusBarColor(activity.getWindow(), color);
-        StatusBars.setStatusBarLight(activity.getWindow(), isLightColor);
+        if (Versions.api19()) {
+            boolean isLightColor = StatusBars.toGrey(color) > 225;
+            StatusBars.setStatusBarColor(activity.getWindow(), color);
+            StatusBars.setStatusBarLight(activity.getWindow(), isLightColor);
+        }
     }
 
     private static int toGrey(@ColorInt int color) {
@@ -46,12 +48,14 @@ public class StatusBars {
     }
 
     private static void setStatusBarColor(Window window, int color) {
-        if (Versions.api23()) {
-            StatusBars.setStatusBarColor23(window, color);
-        } else if (Versions.api21() && !isEMUI()) {
-            StatusBars.setStatusBarColor21(window, color);
-        } else {
-            StatusBars.setStatusBarColor19(window, color);
+        if (Versions.api19()) {
+            if (Versions.api23()) {
+                StatusBars.setStatusBarColor23(window, color);
+            } else if (Versions.api21() && !isEMUI()) {
+                StatusBars.setStatusBarColor21(window, color);
+            } else {
+                StatusBars.setStatusBarColor19(window, color);
+            }
         }
     }
 

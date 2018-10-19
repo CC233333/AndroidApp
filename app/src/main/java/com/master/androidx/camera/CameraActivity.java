@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -79,22 +78,8 @@ public class CameraActivity extends BaseActivity {
             return;
         }
 
-        if (requestCode == 1000 && data != null) {
-
-            // content://media/external/images/media/17207
-            Uri uri = data.getData();
-            Log.d("AppCamera", "onActivityResult: " + uri);
-
-            ImageView imageView = findViewById(R.id.image_view);
-            imageView.setImageURI(uri);
-
-            // /storage/emulated/0/DCIM/Camera/IMG_20180804_113049.jpg
-            String picturePath = Paths.getPath(this, uri);
-            Log.d("AppCamera", "onActivityResult: " + picturePath);
-
-            // /external/images/media/17207
-            String path = uri.getPath();
-            Log.d("AppCamera", "onActivityResult: " + path);
+        if (requestCode == 1000) {
+            showImage(data);
             return;
         }
 
@@ -104,6 +89,18 @@ public class CameraActivity extends BaseActivity {
     private void openPictures() {
         Intent starter = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(starter, 1000);
+    }
+
+    private void showImage(Intent data) {
+        if (data != null && data.getData() != null) {
+            Uri uri = data.getData();
+            String path = Paths.getPath(this, uri);
+            ImageView imageView = findViewById(R.id.image_view);
+            Glide.with(this)
+                    .load(uri)
+                    .apply(RequestOptions.fitCenterTransform())
+                    .into(imageView);
+        }
     }
 
 }
