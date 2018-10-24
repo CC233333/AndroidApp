@@ -10,6 +10,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/matisse" />
+            <option value="$PROJECT_DIR$/promise" />
+            <option value="$PROJECT_DIR$/test" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

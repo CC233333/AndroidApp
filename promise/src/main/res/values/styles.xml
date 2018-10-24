@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/promisePrimary</item>
+        <item name="colorPrimaryDark">@color/promisePrimaryDark</item>
+        <item name="colorAccent">@color/promiseAccent</item>
+
+        <item name="alertDialogTheme">@style/PromiseAlertDialogTheme</item>
+        <item name="alertDialogStyle">@style/PromiseAlertDialogStyle</item>
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <!-- 日间模式 -->
+    <style name="AppLightTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <item name="colorPrimaryDark">@color/promisePrimaryDark</item>
+        <item name="colorPrimary">@color/promisePrimary</item>
+        <item name="colorAccent">@color/promiseAccent</item>
+        <item name="colorError">#F4511E</item>
+
+        <item name="android:textColorPrimary">@color/primaryTextLight</item>
+        <item name="android:textColorSecondary">@color/secondaryTextLight</item>
+        <item name="android:textColorTertiary">@color/tertiaryTextLight</item>
+        <item name="android:textColorHint">@color/secondaryTextLight</item>
+        <item name="android:textColorHighlight">@color/secondaryTextLight</item>
+        <item name="android:textColorLink">?attr/colorAccent</item>
+
+    </style>
+
+    <!-- 夜间模式 -->
+    <style name="AppDarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    </style>
+
+    <!-- Dialog -->
+    <style name="PromiseDialogTheme" parent="@style/ThemeOverlay.AppCompat.Dialog">
+
+    </style>
+
+    <!-- Alert Dialog Theme -->
+    <style name="PromiseAlertDialogTheme" parent="@style/ThemeOverlay.AppCompat.Dialog.Alert">
+        <!--<item name="android:windowMinWidthMajor">65%</item>-->
+        <!--<item name="android:windowMinWidthMinor">95%</item>-->
+    </style>
+
+    <!-- Alert Dialog Style -->
+    <style name="PromiseAlertDialogStyle" parent="@style/AlertDialog.AppCompat.Light">
+
+    </style>
+
+</resources>

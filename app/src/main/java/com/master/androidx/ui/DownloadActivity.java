@@ -13,7 +13,7 @@ import android.view.View;
 
 import com.master.androidx.R;
 import com.master.androidx.base.BaseActivity;
-import com.master.androidx.rx.NextObserver;
+import com.master.androidx.https.NextObserver;
 import com.master.androidx.util.Prefs;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
